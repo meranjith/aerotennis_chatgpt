@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+  <meta name="theme-color" content="#050708">
+  <meta name="description" content="AeroTennis — blind, motion-controlled tennis with spatial audio.">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles.css">
+  <title>AeroTennis</title>
+</head>
+<body>
+  <main id="app">
+    <section id="home" class="screen active">
+      <div class="brand">AERO<span>TENNIS</span></div>
+      <p class="tagline">HEAR THE BALL. FEEL THE RACKET.</p>
+      <div class="card setup-card">
+        <div class="warning" id="deviceWarning">Stereo earphones are required. Use the game in landscape.</div>
+        <button id="audioTestBtn" class="primary">ENABLE STEREO AUDIO</button>
+        <div id="audioTestStatus" class="micro-status">Left/right audio test required.</div>
+        <div class="grid2">
+          <button id="createBtn" class="secondary" disabled>CREATE MATCH</button>
+          <button id="joinBtn" class="secondary" disabled>JOIN MATCH</button>
+        </div>
+        <button id="practiceBtn" class="ghost" disabled>PRACTICE · WALL MODE</button>
+        <div class="room-row hidden" id="joinRow">
+          <input id="roomInput" inputmode="numeric" maxlength="6" placeholder="6-DIGIT CODE" aria-label="6 digit room code">
+          <button id="confirmJoinBtn" class="secondary">JOIN</button>
+        </div>
+      </div>
+      <div class="footer-note">Motion permission + wake lock are requested when you start.</div>
+    </section>
+
+    <section id="lobby" class="screen">
+      <div class="brand small">AERO<span>TENNIS</span></div>
+      <div class="card lobby-card">
+        <div class="eyebrow">MATCH CODE</div>
+        <div class="code" id="roomCode">------</div>
+        <p id="lobbyStatus">Waiting for opponent…</p>
+        <button id="copyCodeBtn" class="secondary">COPY CODE</button>
+      </div>
+    </section>
+
+    <section id="calibrate" class="screen">
+      <div class="brand small">AERO<span>TENNIS</span></div>
+      <div class="card calibration-card">
+        <div class="eyebrow">RACKET CALIBRATION</div>
+        <h1>Right hand. Landscape. Point the <span class="cyan">SCREEN</span> forward.</h1>
+        <p>Hold the phone like a racket handle. Keep your wrist neutral, screen facing the direction you would push the racket through the ball.</p>
+        <div class="calibration-steps">1 · Face forward &nbsp;&nbsp; 2 · Stay still &nbsp;&nbsp; 3 · CALIBRATE</div>
+        <button id="calibrateBtn" class="primary">CALIBRATE RACKET</button>
+        <div id="sensorStatus" class="micro-status">Sensor permissions not started.</div>
+      </div>
+    </section>
+
+    <section id="game" class="screen gameplay">
+      <div class="game-top">
+        <div class="brand tiny">AERO<span>TENNIS</span></div>
+        <div class="game-connection" id="gameConnection">● READY</div>
+      </div>
+      <div class="score-wrap" aria-live="polite">
+        <div class="player-score"><span id="player1Label">PLAYER 1</span><strong id="p1Score">LOVE</strong></div>
+        <div class="score-sep">:</div>
+        <div class="player-score"><span id="player2Label">PLAYER 2</span><strong id="p2Score">LOVE</strong></div>
+      </div>
+      <div class="server-call" id="serverCall">GET READY</div>
+      <div class="hit-feedback" id="hitFeedback"></div>
+      <div class="debug-readout hidden" id="debugReadout"></div>
+      <button id="endMatchBtn" class="end-btn">EXIT</button>
+    </section>
+
+    <section id="result" class="screen">
+      <div class="brand">AERO<span>TENNIS</span></div>
+      <div class="card result-card">
+        <div class="eyebrow">MATCH RESULT</div>
+        <div class="winner" id="winnerText">GAME</div>
+        <div class="final-score" id="finalScore">—</div>
+        <button id="againBtn" class="primary">PLAY AGAIN</button>
+      </div>
+    </section>
+  </main>
+  <script type="module" src="/app.js"></script>
+</body>
+</html>
